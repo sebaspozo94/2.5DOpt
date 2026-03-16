@@ -9,7 +9,7 @@ import pandas as pd
 from matplotlib.colors import LinearSegmentedColormap
 from skimage import measure  # For 3D Volumetric Meshing
 
-st.set_page_config(page_title="Membrane Topology Opt", layout="centered")
+st.set_page_config(page_title="2.5D Topology Opt", layout="centered")
 
 # --- CUSTOM CSS ---
 st.markdown("""
@@ -34,12 +34,12 @@ st.markdown("""
 # ==========================================
 # PART 1: HEADER & OBJECTIVE
 # ==========================================
-st.markdown('<div class="main-header">Membrane Topology Optimization</div>', unsafe_allow_html=True)
-st.markdown('<div class="tag-container"><span class="tag">2D Plane Stress</span><span class="tag">Optimization</span><span class="tag">FEA Engine</span></div>', unsafe_allow_html=True)
+st.markdown('<div class="main-header">2.5D Topology Optimization</div>', unsafe_allow_html=True)
+st.markdown('<div class="tag-container"><span class="tag">2.5D</span><span class="tag">Plane Stress</span><span class="tag">Optimization</span><span class="tag">FEA Engine</span></div>', unsafe_allow_html=True)
 
 with st.expander("🎯 App Objective", expanded=False):
     st.markdown("""
-    **Objective:** Distribute a constant amount of material to maximize the stiffness of a 2D membrane structure 
+    **Objective:** Distribute a constant amount of material to maximize the stiffness of a 2.5D membrane structure 
     subjected to in-plane point loads.
     
     📄 [**Read the detailed code explanation and documentation here (PDF)**](https://github.com/yourusername/yourrepo/blob/main/docs/explanation.pdf)
@@ -122,7 +122,7 @@ with conf_col3:
     with st.expander("🎯 Optimization Settings", expanded=False):
         vol_frac = st.slider("Volume Fraction", 0.01, 1.0, 0.5)
         rmin = st.number_input("Filter Radius (rmin)", value=0.2, step=0.1)
-        itmax = st.number_input("Max Iterations", value=100, step=10)
+        itmax = st.number_input("Max Iterations", value=50, step=10)
 
 with conf_col4:
     with st.expander("📐 Thickness Limits", expanded=False):
