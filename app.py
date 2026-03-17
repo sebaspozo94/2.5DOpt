@@ -98,7 +98,7 @@ with conf_col1:
         dimx = st.number_input("Domain X (m)", value=4.0, step=1.0, min_value=1.0)
         dimy = st.number_input("Domain Y (m)", value=24.0, step=1.0, min_value=1.0)
         
-        mesh_size = st.number_input("Mesh Size (m)", value=0.05, step=0.01, min_value=0.001, format="%.3f")
+        mesh_size = st.number_input("Mesh Size (m)", value=0.10, step=0.01, min_value=0.001, format="%.3f")
         
         nelx = max(1, int(round(dimx / mesh_size)))
         nely = max(1, int(round(dimy / mesh_size)))
