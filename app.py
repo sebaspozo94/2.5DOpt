@@ -36,7 +36,11 @@ st.markdown("""
 # ==========================================
 st.markdown('<div class="main-header">2.5D Topology Optimization</div>', unsafe_allow_html=True)
 st.markdown('<div class="tag-container"><span class="tag">2.5D</span><span class="tag">Plane Stress</span><span class="tag">Optimization</span><span class="tag">FEA Engine</span></div>', unsafe_allow_html=True)
-
+# --- VISITOR BADGE ADDED HERE ---
+st.markdown("<br>", unsafe_allow_html=True) # Adds a little space
+st.markdown(
+    "[![Visitors](https://api.visitorbadge.io/api/visitors?path=sebaspozo94.test_app&countColor=%232563eb)](https://visitorbadge.io/status?path=sebaspozo94.test_app)"
+)
 with st.expander("🎯 App Objective", expanded=False):
     st.markdown("""
     **Objective:** Distribute a constant amount of material to maximize the stiffness of a 2.5D membrane structure 
