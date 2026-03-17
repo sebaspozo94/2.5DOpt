@@ -632,9 +632,9 @@ with col_info1:
     """)
     # --- VISITOR BADGE ADDED HERE ---
     st.markdown("<br>", unsafe_allow_html=True) # Adds a little space
-#    st.markdown(
-#    "[![Visitors](https://api.visitorbadge.io/api/visitors?path=sebaspozo94.apps&countColor=%232563eb)](https://visitorbadge.io/status?path=sebaspozo94.apps)"
-#    )
+    st.markdown(
+    "[![Visitors](https://api.visitorbadge.io/api/visitors?path=sebaspozo94.apps&countColor=%232563eb)](https://visitorbadge.io/status?path=sebaspozo94.apps)"
+    )
 
 with col_info2:
     st.markdown("""
