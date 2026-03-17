@@ -585,6 +585,7 @@ with col_info1:
     st.markdown("""
     **Created by:** Sebastian Pozo Ocampo  
     **Contact:** [sebaspozo94@gmail.com](mailto:sebaspozo94@gmail.com)
+    *For custom workflows, project-specific studies, or collaboration.*
     """)
 with col_info2:
     st.markdown("""
