@@ -555,9 +555,10 @@ if st.session_state.run_finished:
     # Added config parameter here
     plot_placeholder.plotly_chart(fig, use_container_width=True, config=PLOTLY_CONFIG)
     
-    # STL Export
+    # EXPORT SECTION: STL & GIF
+    # ==========================================
     st.markdown("---")
-    st.subheader("💾 Export Solid Geometry")
+    st.subheader("💾 Export Geometry & Animation")
     
     final_x_p, final_y_p, final_z_p, final_f_idx, _ = generate_3d_mesh(np.flipud(st.session_state.history[-1]), tmin, tmax, dimx, dimy)
     
@@ -569,10 +570,53 @@ if st.session_state.run_finished:
         buf = io.BytesIO()
         solid_mesh_stl.save('membrane.stl', fh=buf)
         return buf.getvalue()
+    
+    # 2. Fast GIF Generator
+    def create_fast_gif(history, max_thick):
+        from PIL import Image
+        import matplotlib.cm as cm
+        import matplotlib.colors as mcolors
+        
+        # Using 'copper' to match your 2.5D UI theme
+        norm = mcolors.Normalize(vmin=0, vmax=max_thick)
+        cmap = cm.get_cmap('copper') 
+        
+        frames = []
+        for Z in history:
+            img_array = np.uint8(cmap(norm(np.flipud(Z))) * 255)
+            img = Image.fromarray(img_array)
+            # Scale up by 5x so the GIF is nice and clear
+            img = img.resize((img.width * 5, img.height * 5), Image.Resampling.NEAREST)
+            frames.append(img)
+            
+        gif_buf = io.BytesIO()
+        frames[0].save(gif_buf, format='GIF', save_all=True, append_images=frames[1:], duration=100, loop=0)
+        return gif_buf.getvalue()
+        
+    # 3. Side-by-Side Download Buttons
+    col_export1, col_export2 = st.columns(2)
+    
+    with col_export1:
+        stl_data = generate_stl_3d(final_x_p, final_y_p, final_z_p, final_f_idx)
+        st.download_button(
+            label="📥 Download Solid Model (.STL)", 
+            data=stl_data, 
+            file_name="Optimized_Solid_Final.stl", 
+            mime="model/stl", 
+            use_container_width=True
+        )
 
-    stl_data = generate_stl_3d(final_x_p, final_y_p, final_z_p, final_f_idx)
-    st.download_button("📥 Download Final Solid Model (.STL)", data=stl_data, file_name=f"Optimized_Solid_Final.stl", mime="model/stl", type="primary")
-
+    with col_export2:
+        gif_data = create_fast_gif(st.session_state.history, tmax)
+        st.download_button(
+            label="🎬 Download Animation (.GIF)", 
+            data=gif_data, 
+            file_name="Optimization_History.gif", 
+            mime="image/gif", 
+            type="primary",
+            use_container_width=True
+        )
+        
 # ==========================================
 # PART 5: AUTHOR & CONTACT INFO
 # ==========================================
