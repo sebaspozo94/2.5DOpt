@@ -41,7 +41,7 @@ with st.expander("🎯 App Objective", expanded=False):
     st.markdown("""
     **Objective:** Distribute a constant amount of material to maximize the stiffness of a 2.5D membrane structure 
     subjected to in-plane point loads.
-    * The amount of materila is given by a fraction of the domain volume (X\timesY\timest)
+    * The amount of material distributed is given by a fraction of the volume with sides: Domain X, Domain y, Min Thickness.
     
     📄 [**Read the detailed code explanation and documentation here (PDF)**](https://github.com/sebaspozo94/2.5DOpt/blob/main/2.5DOpt.pdf)
     """)
