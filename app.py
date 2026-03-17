@@ -42,7 +42,7 @@ with st.expander("🎯 App Objective", expanded=False):
     **Objective:** Distribute a constant amount of material to maximize the stiffness of a 2.5D membrane structure 
     subjected to in-plane point loads.
     
-    📄 [**Read the detailed code explanation and documentation here (PDF)**](https://github.com/yourusername/yourrepo/blob/main/docs/explanation.pdf)
+    📄 [**Read the detailed code explanation and documentation here (PDF)**](https://github.com/sebaspozo94/2.5DOpt/blob/main/2.5DOpt.pdf)
     """)
 
 # --- SETUP SESSION STATE ---
