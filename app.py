@@ -571,21 +571,21 @@ if st.session_state.run_finished:
         solid_mesh_stl.save('membrane.stl', fh=buf)
         return buf.getvalue()
     
-    # 2. Fast GIF Generator
+# 2. Fast GIF Generator (Corrected Colors & Orientation)
     def create_fast_gif(history, max_thick):
         from PIL import Image
-        import matplotlib.cm as cm
-        import matplotlib.colors as mcolors
-        
-        # Using 'copper' to match your 2.5D UI theme
-        norm = mcolors.Normalize(vmin=0, vmax=max_thick)
-        cmap = cm.get_cmap('copper') 
         
         frames = []
         for Z in history:
-            img_array = np.uint8(cmap(norm(np.flipud(Z))) * 255)
+            # 1. Normalize the values exactly like your live plot does
+            Z_norm = Z / (max_thick + 1e-9)
+            Z_norm = np.clip(Z_norm, 0, 1)
+            
+            # 2. Use your custom 'fast_cmap' and DO NOT flip the array
+            img_array = np.uint8(fast_cmap(Z_norm) * 255)
             img = Image.fromarray(img_array)
-            # Scale up by 5x so the GIF is nice and clear
+            
+            # 3. Scale up the image by 5x so it is crisp
             img = img.resize((img.width * 5, img.height * 5), Image.Resampling.NEAREST)
             frames.append(img)
             
