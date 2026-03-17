@@ -589,7 +589,6 @@ with col_info1:
     """)
 with col_info2:
     st.markdown("""
-    *Connect with me:*
     * [Website](https://streamline-gallery-5d621e11.buildaispace.app)  
     * [LinkedIn](https://www.linkedin.com/in/sebastianpozo94/)
     * [GitHub](https://github.com/sebaspozo94)
